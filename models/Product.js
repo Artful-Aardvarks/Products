@@ -68,7 +68,7 @@ const getPhotos = id => {
         from: "photos",
         let: { product_id: "$product_id" },
         pipeline: [{ $match: { $expr: { $eq: ["$id", "$$product_id"] } } }],
-        as: "productSkus"
+        as: "productPhotos"
       }
     }
   ]).then(docs => {
