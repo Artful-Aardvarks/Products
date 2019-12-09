@@ -2,29 +2,59 @@ const mongoose = require("mongoose");
 const Product = require("../database/index.js");
 
 //aggregate to get styles
+// const getStyles = id => {
+//   console.log("id", id);
+//   return Product.aggregate([
+//     {
+//       $match: {
+//         id: id
+//       }
+//     },
+//     {
+//       $project: { product_id: "$id" }
+//     },
+//     {
+//       $lookup: {
+//         from: "styles",
+//         let: { product_id: "$product_id" },
+//         pipeline: [{ $match: { $expr: { $eq: ["$id", "$$product_id"] } } }],
+//         as: "productStyles"
+//       }
+//     }
+//   ]).then(docs => {
+//     console.log("docs", docs);
+//     return docs;
+//   });
+// };
+
+// db.products.aggregate([
+//   {
+//     $match: {id: id}
+//   },
+//   {
+//     $lookup: {
+//       from: "styles",
+//       localField: "id",
+//       foreignField: "id",
+//       as: "productStyles"
+//     }
+//   }
+// ]);
+
 const getStyles = id => {
-  console.log("id", id);
   return Product.aggregate([
     {
-      $match: {
-        id: id
-      }
-    },
-    {
-      $project: { product_id: "$id" }
+      $match: { id: id }
     },
     {
       $lookup: {
         from: "styles",
-        let: { product_id: "$product_id" },
-        pipeline: [{ $match: { $expr: { $eq: ["$id", "$$product_id"] } } }],
+        localField: "id",
+        foreignField: "id",
         as: "productStyles"
       }
     }
-  ]).then(docs => {
-    console.log("docs", docs);
-    return docs;
-  });
+  ]);
 };
 
 //aggregate to get skus

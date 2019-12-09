@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/sdc2", { useNewUrlParser: true });
+mongoose.connect("mongodb://ip-172-31-26-214.us-west-2.compute.internal/sdc2", {
+  useNewUrlParser: true
+});
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

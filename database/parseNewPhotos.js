@@ -7,26 +7,7 @@ const rl = readline.createInterface({
 
 const writeStream = fs.createWriteStream("cleanPhotos.csv");
 
-//loop through each line (string)
-//each if char is a "
-//if yes, increment counter by 1
-//if the counter is 4,
-//then write line to clean csv
-//reset counter to 0
-
-//typeof line is a string
 rl.on("line", line => {
-  //make each line an array to access each col by index
-  //check if array[2] is a string,
-  //if no, check the beginning and end of it for quotes
-  //if beginning doesnt have ", add it
-  //else add " to the end.
-  //check if array[3] is a string
-  //if no, check the beginning and end of it for quotes
-  //if beginning doesnt have ", add it
-  //else add " to the end.
-  //then write to clean csv
-
   let lineArray = line.split(",");
 
   let firstLetter2 = lineArray[2].charAt(0);
@@ -144,12 +125,6 @@ rl.on("line", line => {
   } else if (lineArray[3] !== undefined) {
     lineArray[3] = "No photo available";
   }
-
-  // if (lineArray[0] === "249") {
-  //   console.log("line here", line);
-  //   console.log("first letter", firstLetter3);
-  //   console.log("last letter", lastLetter3);
-  // }
 });
 
 rl.on("close", () => {

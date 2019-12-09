@@ -14,14 +14,17 @@ app.use(bodyParser.json());
 
 // app.use('/products', router);
 
+app.get("/loaderio-437d018a72034cfc60514bfe9e3359cb", function(req, res) {
+  res.send("loaderio-437d018a72034cfc60514bfe9e3359cb");
+});
+
 //get product list (limited to 100 at a time)
+
 app.get("/products", function(req, res) {
   Product.find()
     .limit(100)
     .then(results => {
-      console.time("querygetall");
       res.send(results);
-      console.timeEnd("querygetall");
     })
     .catch(err => {
       console.log("err in get request", err);
